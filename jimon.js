@@ -157,7 +157,7 @@ function refreshCatalogGrid(){
   if(grid){
     grid.innerHTML=list.map(productCard).join('');
     grid.classList.remove('animate');
-    setTimeout(function(){grid.classList.add('animate');},30);
+    setTimeout(function(){grid.classList.add('animate');},80);
   }
   const count=document.getElementById('resultsCount');
   if(count)count.textContent=list.length;
