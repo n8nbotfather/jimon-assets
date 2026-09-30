@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JIMON GROUP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Roboto+Mono:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="jimon.css">
+</head>
+<body>
+<div class="jimon-site">
+  <header class="hdr" id="hdr">
+    <div class="container hdr__in">
+      <a onclick="go('/')" class="logo"><span class="logo__mark">金</span>JIMON GROUP</a>
+      <nav class="nav">
+        <a onclick="go('/catalog')">Каталог</a>
+        <a onclick="go('/catalog?cat=liver')">Комплексы</a>
+        <a onclick="go('/about')">О компании</a>
+        <a onclick="go('/contacts')">Контакты</a>
+      </nav>
+      <div class="hdr__cta">
+        <div class="hdr__icons"><span title="Поиск" onclick="go('/catalog')">🔍</span></div>
+        <a onclick="openOrderModal()" class="btn btn--dark">Заказать</a>
+        <button class="burger" id="burger">☰</button>
+      </div>
+    </div>
+  </header>
+  <div class="mmenu" id="mmenu">
+    <button class="mmenu__close" id="mmenuClose">✕</button>
+    <a onclick="go('/catalog')">Каталог</a>
+    <a onclick="go('/catalog?cat=liver')">Комплексы</a>
+    <a onclick="go('/catalog?cat=diagnostics')">Диагностика AI</a>
+    <a onclick="go('/about')">О компании</a>
+    <a onclick="go('/contacts')">Контакты</a>
+    <a onclick="openOrderModal()">Заказать</a>
+  </div>
+  <main id="app">
+    <div style="min-height:60vh;display:flex;align-items:center;justify-content:center;color:#5a6b62;font-family:'Roboto Mono',monospace;font-size:14px">Загрузка…</div>
+  </main>
+  <footer class="ftr">
+    <div class="container">
+      <div class="ftr__grid">
+        <div>
+          <div class="ftr__logo"><span class="logo__mark">金</span>JIMON GROUP</div>
+          <p style="font-weight:300;max-width:320px">Фармацевтическая корпорация из Китая.</p>
+          <div class="ftr__social">
+            <a href="#" title="Telegram">✈</a>
+            <a href="#" title="WhatsApp">💬</a>
+            <a href="#" title="VK">VK</a>
+            <a href="#" title="Instagram">◎</a>
+          </div>
+        </div>
+        <div>
+          <h4>Каталог</h4>
+          <ul>
+            <li><a onclick="go('/catalog?cat=joints')">Суставы и кости</a></li>
+            <li><a onclick="go('/catalog?cat=liver')">Печень и детокс</a></li>
+            <li><a onclick="go('/catalog?cat=heart')">Сердце и сосуды</a></li>
+            <li><a onclick="go('/catalog?cat=beauty')">Красота</a></li>
+            <li><a onclick="go('/catalog?cat=immunity')">Иммунитет</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Компания</h4>
+          <ul>
+            <li><a onclick="go('/about')">О компании</a></li>
+            <li><a onclick="go('/contacts')">Контакты</a></li>
+            <li><a onclick="openOrderModal()">Заказать</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Контакты</h4>
+          <ul>
+            <li>📞 +7 (800) 000-00-00</li>
+            <li>✉ info@jimon.ru</li>
+            <li>📍 Новосибирск</li>
+            <li>🕐 Пн–Вс: 10:00–22:00</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ftr__bottom">
+        <div>© 2026 JIMON GROUP · 金木集团</div>
+        <div>Не является лекарственным средством.</div>
+      </div>
+    </div>
+  </footer>
+  <button class="totop" id="totop">↑</button>
+  <div class="toast" id="toast"><span>✓</span><span id="toastText"></span></div>
+  <div class="order-modal" id="orderModal">
+    <div class="order-modal__backdrop" onclick="closeOrderModal()"></div>
+    <div class="order-modal__box">
+      <button class="order-modal__close" onclick="closeOrderModal()">✕</button>
+      <h3>Оформить заказ</h3>
+      <div class="order-modal__label" id="orderProductLabel"></div>
+      <p class="order-modal__hint">Выберите удобный способ связи — менеджер ответит в течение 15 минут.</p>
+      <div class="order-modal__list">
+        <a href="https://t.me/+lIERYWNvJ9JjNWFi" target="_blank" rel="noopener" class="order-opt"><span class="ic">✈️</span><span class="name">Telegram</span><span class="arrow">→</span></a>
+        <a href="https://wa.me/79513508528" target="_blank" rel="noopener" class="order-opt"><span class="ic">💬</span><span class="name">WhatsApp</span><span class="arrow">→</span></a>
+        <a href="https://vk.com." target="_blank" rel="noopener" class="order-opt"><span class="ic">📲</span><span class="name">ВКонтакте</span><span class="arrow">→</span></a>
+      </div>
+      <div class="order-modal__foot">Работаем ежедневно с 10:00 до 22:00</div>
+    </div>
+  </div>
+</div>
+<script src="jimon.js" defer></script>
+</body>
+</html>
