@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   JIMON GROUP — jimon.js для Tilda (блок T123)
+   JIMON GROUP — jimon.js
    Сохранять в UTF-8.
    ═══════════════════════════════════════════════════════════════ */
 
@@ -77,6 +77,7 @@ let state = {catalogFilter:'all',catalogSearch:'',catalogSort:'popular'};
 
 function go(path){location.hash='#'+path}
 function parseHash(){const h=location.hash.replace('#','')||'/';const [path,query]=h.split('?');const params={};if(query)query.split('&').forEach(p=>{const[k,v]=p.split('=');params[k]=decodeURIComponent(v||'')});return{path,params}}
+
 function router(){
   const app=document.getElementById('app');
   if(!app) return;
@@ -89,6 +90,7 @@ function router(){
   else if(path==='/contacts')renderContacts(app);
   else render404(app);
   initReveal();initCounters();closeMobileMenu();
+  setTimeout(initCatalogAnimation, 100);
 }
 
 function openOrderModal(productName){
@@ -123,7 +125,7 @@ function renderHome(app){
   app.innerHTML=`<section class="hero"><div class="hero__leaf">金</div><div class="container"><div class="hero__grid"><div><span class="hero__tag">金木集团 · JIMON GROUP · С 1993 года</span><h1>Здоровье, <span>гармония</span><br>и жизненная сила</h1><p>JIMON GROUP — фармацевтическая корпорация из Китая. Объединяем 5000-летнюю мудрость традиционной китайской медицины с современными биотехнологиями.</p><div class="hero__btns"><a onclick="go('/catalog')" class="btn btn--gold">Смотреть каталог →</a><a onclick="openOrderModal()" class="btn btn--ghost">Заказать</a></div></div><div class="hero__card"><div class="hero__stat"><b data-count="1993">0</b><small>год основания<br>г. Аньян, Хэбэй</small></div><div class="hero__stat"><b data-count="40">0</b><small>+ стран экспорта<br>GMP · ISO · HACCP</small></div><div class="hero__stat"><b data-count="56">0</b><small>патентов<br>национальные изобретения</small></div></div></div></div></section>
 <div class="marquee"><div class="marquee__track"><span>5000 лет мудрости ТКМ</span><span>Без ГМО</span><span>Стандарт GMP</span><span>Собственная ферма</span><span>HALAL</span><span>40+ стран</span><span>5000 лет мудрости ТКМ</span><span>Без ГМО</span><span>Стандарт GMP</span><span>Собственная ферма</span><span>HALAL</span><span>40+ стран</span></div></div>
 <section class="sec reveal"><div class="container"><div class="sec__head"><span class="sec__tag">Направления</span><h2 class="sec__title">Десять направлений заботы о здоровье</h2></div><div class="cats">${CATEGORIES.map(c=>`<a onclick="go('/catalog?cat=${c.id}')" class="cat"><div class="cat__circle">${c.icon}</div><div class="cat__name">${c.name}</div></a>`).join('')}</div></div></section>
-<section class="sec sec--cream reveal"><div class="container"><div class="sec__head"><span class="sec__tag">Каталог</span><h2 class="sec__title">Хиты JIMON GROUP</h2><p class="sec__desc">Всего ${PRODUCTS.length} позиций.</p></div><div class="prods">${PRODUCTS.slice(0,8).map(productCard).join('')}</div><div style="text-align:center;margin-top:40px;"><button class="btn btn--dark" onclick="go('/catalog')">Смотреть все ${PRODUCTS.length} продуктов →</button></div></div></section>
+<section class="sec sec--cream"><div class="container"><div class="sec__head"><span class="sec__tag">Каталог</span><h2 class="sec__title">Хиты JIMON GROUP</h2><p class="sec__desc">Всего ${PRODUCTS.length} позиций.</p></div><div class="prods">${PRODUCTS.slice(0,8).map(productCard).join('')}</div><div style="text-align:center;margin-top:40px;"><button class="btn btn--dark" onclick="go('/catalog')">Смотреть все ${PRODUCTS.length} продуктов →</button></div></div></section>
 <section class="sec complex reveal"><div class="container"><div class="sec__head"><span class="sec__tag">Программа</span><h2 class="sec__title">5-этапный комплекс очищения</h2><p class="sec__desc">Кишечник → лимфа → печень → клетки → сосуды. Курс 7 дней.</p></div><div class="steps"><div class="step"><div class="step__num">01</div><div class="step__icon">🌿</div><div class="step__name">Кишечник</div><div class="step__text">Очищение и нормализация</div></div><div class="step"><div class="step__num">02</div><div class="step__icon">💧</div><div class="step__name">Лимфа</div><div class="step__text">Выведение токсинов</div></div><div class="step"><div class="step__num">03</div><div class="step__icon">${I.liver}</div><div class="step__name">Печень</div><div class="step__text">Детоксикация</div></div><div class="step"><div class="step__num">04</div><div class="step__icon">🧬</div><div class="step__name">Клетки</div><div class="step__text">Восстановление</div></div><div class="step"><div class="step__num">05</div><div class="step__icon">🫀</div><div class="step__name">Сосуды</div><div class="step__text">Микроциркуляция</div></div></div><div style="text-align:center;margin-top:40px;position:relative;z-index:5;"><button class="btn btn--gold" onclick="go('/product/complex-a')">Подробнее о комплексе «А» →</button></div></div></section>
 <section class="sec reveal"><div class="container"><div class="sec__head"><span class="sec__tag">О компании</span><h2 class="sec__title">JIMON GROUP · 金木集团</h2></div><div class="facts-grid"><div class="fact-card"><div class="ic">${F.calendar}</div><b>1993</b><span>Год основания</span></div><div class="fact-card"><div class="ic">${F.farm}</div><b>1300 му</b><span>Своя ферма</span></div><div class="fact-card"><div class="ic">${F.certificate}</div><b>56</b><span>Патентов</span></div><div class="fact-card"><div class="ic">${F.box}</div><b>7000 т</b><span>Продукции в год</span></div><div class="fact-card"><div class="ic">${F.globe}</div><b>40+</b><span>Стран экспорта</span></div><div class="fact-card"><div class="ic">${F.flask}</div><b>100 000</b><span>Класс чистоты</span></div></div><div style="text-align:center;margin-top:40px;"><button class="btn btn--dark" onclick="go('/about')">Подробнее о компании →</button></div></div></section>
 <section class="sec sec--cream reveal"><div class="container"><div class="sec__head"><span class="sec__tag">Гарантии</span><h2 class="sec__title">Почему нам доверяют</h2></div><div class="values-grid"><div class="value-card"><div class="ic">🏆</div><h4>GMP · ISO · HACCP</h4><p>Продукция сертифицирована по международным стандартам качества.</p></div><div class="value-card"><div class="ic">🌿</div><h4>БЕЗ ГМО</h4><p>Только натуральные компоненты. Без гормонов и красителей.</p></div><div class="value-card"><div class="ic">🔬</div><h4>НАУЧНЫЙ ПОДХОД</h4><p>Собственный НИИ. 56 патентов. 90+ специалистов.</p></div><div class="value-card"><div class="ic">🚚</div><h4>ДОСТАВКА 3–7 ДНЕЙ</h4><p>По всей России из склада в Новосибирске.</p></div></div></div></section>
@@ -150,10 +152,17 @@ function setFilter(cat){state.catalogFilter=cat;document.querySelectorAll('.chip
 function setSearch(val){state.catalogSearch=val;refreshCatalogGrid()}
 function setSort(val){state.catalogSort=val;refreshCatalogGrid()}
 function refreshCatalogGrid(){
-  const grid=document.getElementById('productsGrid');const list=filteredProducts();
-  if(grid)grid.innerHTML=list.map(productCard).join('');
-  const count=document.getElementById('resultsCount');if(count)count.textContent=list.length;
-  const lbl=document.getElementById('activeFilterLabel');if(lbl)lbl.textContent=filterLabel();
+  const grid=document.getElementById('productsGrid');
+  const list=filteredProducts();
+  if(grid){
+    grid.innerHTML=list.map(productCard).join('');
+    grid.classList.remove('animate');
+    setTimeout(function(){grid.classList.add('animate');},30);
+  }
+  const count=document.getElementById('resultsCount');
+  if(count)count.textContent=list.length;
+  const lbl=document.getElementById('activeFilterLabel');
+  if(lbl)lbl.textContent=filterLabel();
 }
 
 function openTab(evt,tabId){
@@ -184,9 +193,9 @@ function renderAbout(app){
 <div class="mission"><h3>Наша миссия — нести культуру китайской медицины в мир</h3><p>JIMON GROUP основана в 1993 году в городе Аньян — городе с тысячелетней историей ТКМ. Уже более 32 лет группа придерживается принципов наследования ТКМ и инновационного развития.</p><p>Компания сформировала полноценную промышленную цепочку: выращивание растений → научные исследования → производство → продажа.</p><p class="quote">«Мудрость трав, путь гармонии и здоровья» — философия компании.</p></div>
 <div class="sec__head" style="margin-top:80px;"><span class="sec__tag">История</span><h2 class="sec__title" style="font-size:clamp(24px,3vw,36px);">32 года развития</h2></div><div class="timeline"><div class="tl-item"><div class="tl-year">1993</div><div class="tl-title">Основание</div><div class="tl-text">JIMON GROUP основана в г. Аньян (провинция Хэбэй, КНР).</div></div><div class="tl-item"><div class="tl-year">2000-е</div><div class="tl-title">Промышленная цепочка</div><div class="tl-text">Выращивание → исследования → производство → продажа.</div></div><div class="tl-item"><div class="tl-year">2015</div><div class="tl-title">Лицензия №71</div><div class="tl-text">ТОП-100 фармпроизводителей Китая.</div></div><div class="tl-item"><div class="tl-year">2015-2016</div><div class="tl-title">ТОП-50 быстрорастущих</div><div class="tl-text">Вхождение в ТОП-50 быстрорастущих фармкомпаний Китая.</div></div><div class="tl-item"><div class="tl-year">2017</div><div class="tl-title">ТОП-10 брендов</div><div class="tl-text">«Надёжное предприятие года».</div></div><div class="tl-item"><div class="tl-year">2022</div><div class="tl-title">Инновационное предприятие</div><div class="tl-text">Статус инновационного МСП провинции Хэбэй.</div></div><div class="tl-item"><div class="tl-year">2025</div><div class="tl-title">Премия Хэбэй</div><div class="tl-text">13-я церемония. Выход на международные рынки.</div></div></div>
 <div class="sec__head" style="margin-top:80px;"><span class="sec__tag">Масштаб</span><h2 class="sec__title" style="font-size:clamp(24px,3vw,36px);">Цифры и факты</h2></div><div class="facts-grid"><div class="fact-card"><div class="ic">${F.farm}</div><b>31 га</b><span>Главный парк</span></div><div class="fact-card"><div class="ic">${F.flask}</div><b>100 000</b><span>Класс чистоты</span></div><div class="fact-card"><div class="ic">${F.box}</div><b>20 000 м²</b><span>Логистика</span></div><div class="fact-card"><div class="ic">${F.certificate}</div><b>56</b><span>Патентов</span></div><div class="fact-card"><div class="ic">${F.globe}</div><b>40+</b><span>Стран экспорта</span></div><div class="fact-card"><div class="ic">${F.calendar}</div><b>90+</b><span>Специалистов</span></div></div>
-<div class="sec__head" style="margin-top:80px;"><span class="sec__tag">Награды</span><h2 class="sec__title" style="font-size:clamp(24px,3vw,36px);">Более 50 государственных наград</h2></div><div class="awards-grid"><div class="award-card"><div class="year">2025</div><h4>Премия Хэбэй</h4><p>Высшая региональная награда.</p></div><div class="award-card"><div class="year">2025</div><h4>Лучший продукт года</h4><p>Продукт «Салаз».</p></div><div class="award-card"><div class="year">2024</div><h4>Инновационное предприятие</h4><p>За технологии.</p></div><div class="award-card"><div class="year">2022</div><h4>Dragon Head Enterprise</h4><p>Ведущее предприятие Хэбэй.</p></div><div class="award-card"><div class="year">2021</div><h4>Образцовое предприятие</h4><p>За вклад в медицину.</p></div><div class="award-card"><div class="year">2020</div><h4>Надёжная ААА</h4><p>Провинция Хэбэй.</p></div><div class="award-card"><div class="year">2018</div><h4>Соц. ответственность</h4><p>Доверие потребителей.</p></div><div class="award-card"><div class="year">2017</div><h4>ТОП-10 брендов</h4><p>В фармотрасли.</p></div><div class="award-card"><div class="year">2015-16</div><h4>ТОП-50 быстрорастущих</h4><p>Фармкомпании.</p></div><div class="award-card"><div class="year">2015</div><h4>ТОП-100 производителей</h4><p>Ведущие.</p></div><div class="award-card"><div class="year">2015</div><h4>High-Tech</h4><p>Провинция Хэбэй.</p></div></div>
+<div class="sec__head" style="margin-top:80px;"><span class="sec__tag">Награды</span><h2 class="sec__title" style="font-size:clamp(24px,3vw,36px);">Более 50 государственных наград</h2></div><div class="awards-grid"><div class="award-card"><div class="year">2025</div><h4>Премия Хэбэй</h4><p>Высшая региональная награда.</p></div><div class="award-card"><div class="year">2025</div><h4>Лучший продукт года</h4><p>Продукт «Салаз».</p></div><div class="award-card"><div class="year">2024</div><h4>Инновационное предприятие</h4><p>За технологии.</p></div><div class="award-card"><div class="year">2022</div><h4>Dragon Head Enterprise</h4><p>Ведущее предприятие Хэбэй.</p></div><div class="award-card"><div class="year">2021</div><h4>Образцовое предприятие</h4><p>За вклад в медицину.</p></div><div class="award-card"><div class="year">2020</div><h4>Надёжная ААА</h4><p>Провинция Хэбэй.</p></div></div>
 <div class="sec__head" style="margin-top:80px;"><span class="sec__tag">Сертификаты</span><h2 class="sec__title" style="font-size:clamp(24px,3vw,36px);">Международные стандарты</h2></div><div class="cert-row"><div class="cert-badge"><div class="ic">🏆</div><b>GMP</b><span>Good Manufacturing Practice</span></div><div class="cert-badge"><div class="ic">📋</div><b>ISO 9001:2015</b><span>Менеджмент качества</span></div><div class="cert-badge"><div class="ic">🛡️</div><b>HACCP</b><span>Анализ рисков</span></div><div class="cert-badge"><div class="ic">🌙</div><b>HALAL</b><span>Halal Holding</span></div><div class="cert-badge"><div class="ic">📊</div><b>FSSC 22000</b><span>Food Safety System</span></div><div class="cert-badge"><div class="ic">✡️</div><b>KOSHER</b><span>Kosher</span></div><div class="cert-badge"><div class="ic">🌍</div><b>SRS</b><span>Безопасность</span></div><div class="cert-badge"><div class="ic">🇰🇷</div><b>FDA · KGMP</b><span>Регистрация</span></div></div>
-<div class="sec__head" style="margin-top:80px;"><span class="sec__tag">Руководство</span><h2 class="sec__title" style="font-size:clamp(24px,3vw,36px);">Президент компании</h2></div><div class="president"><div class="president__photo"><img src="images/president.jpg" alt="НИЮ ЛИ УЕИ" onerror="this.outerHTML='👤'"></div><div class="president__info"><h3>НИЮ ЛИ УЕИ</h3><div class="role">Президент JIMON GROUP · 金木集团</div><p>Основатель и председатель правления JIMON GROUP. Депутат Собрания народных представителей провинции Хэбэй (14-й созыв).</p><p>Под его руководством компания за 30+ лет прошла путь от небольшого производства напитков до международного холдинга.</p><ul class="president__roles"><li>Представитель Народного собрания Хэбэй</li><li>Исполнительный вице-председатель Национальной федерации</li><li>Член Китайской ассоциации внешних связей</li><li>Председатель Ассоциации медпрома Хэбэй</li><li>Исполнительный вице-председатель Китайской ассоциации ТМ</li><li>Вице-председатель Китайской фармассоциации</li><li>Заместитель председателя Ассоциации медпрома Китая</li><li>Председатель фонда Jinmu</li></ul></div></div>
+<div class="sec__head" style="margin-top:80px;"><span class="sec__tag">Руководство</span><h2 class="sec__title" style="font-size:clamp(24px,3vw,36px);">Президент компании</h2></div><div class="president"><div class="president__photo"><img src="https://cdn.jsdelivr.net/gh/n8nbotfather/jimon-assets@main/images/president.jpg" alt="НИЮ ЛИ УЕИ" onerror="this.outerHTML='👤'"></div><div class="president__info"><h3>НИЮ ЛИ УЕИ</h3><div class="role">Президент JIMON GROUP · 金木集团</div><p>Основатель и председатель правления JIMON GROUP. Депутат Собрания народных представителей провинции Хэбэй (14-й созыв).</p><p>Под его руководством компания за 30+ лет прошла путь от небольшого производства напитков до международного холдинга.</p><ul class="president__roles"><li>Представитель Народного собрания Хэбэй</li><li>Исполнительный вице-председатель Национальной федерации</li><li>Член Китайской ассоциации внешних связей</li><li>Председатель Ассоциации медпрома Хэбэй</li><li>Исполнительный вице-председатель Китайской ассоциации ТМ</li><li>Вице-председатель Китайской фармассоциации</li><li>Заместитель председателя Ассоциации медпрома Китая</li><li>Председатель фонда Jinmu</li></ul></div></div>
 <div class="cta" style="margin-top:60px;border-radius:8px;"><div class="container"><h3>Готовы стать партнёром?</h3><p>JIMON GROUP — экосистема возможностей. Скидка 10–60% на повторные покупки.</p><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;"><button class="btn btn--dark" onclick="go('/catalog')">Перейти в каталог →</button><button class="btn btn--line" onclick="openOrderModal()">Заказать</button></div></div></div></div>`;
 }
 
@@ -198,15 +207,6 @@ function render404(app){
   app.innerHTML=`<div class="container" style="padding:120px 0;text-align:center;"><div style="font-size:100px;margin-bottom:20px;">🔍</div><h2 style="color:var(--green);margin-bottom:16px;">Страница не найдена</h2><p style="color:var(--muted);margin-bottom:30px;">Возможно, товар был удалён</p><button class="btn btn--dark" onclick="go('/catalog')">Перейти в каталог →</button></div>`;
 }
 
-function showToast(text){
-  const t=document.getElementById('toast');
-  const tt=document.getElementById('toastText');
-  if(!t||!tt) return;
-  tt.textContent=text;
-  t.classList.add('show');
-  clearTimeout(window._toastTimer);
-  window._toastTimer=setTimeout(()=>t.classList.remove('show'),2500);
-}
 function initReveal(){
   const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:0.12});
   document.querySelectorAll('.reveal:not(.on)').forEach(el=>io.observe(el));
@@ -215,6 +215,44 @@ function initCounters(){
   const counters=document.querySelectorAll('[data-count]:not([data-done])');
   const cio=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;el.setAttribute('data-done','1');const target=+el.dataset.count;const dur=1600;const start=performance.now();const step=now=>{const p=Math.min((now-start)/dur,1);const eased=1-Math.pow(1-p,3);el.textContent=Math.floor(target*eased).toLocaleString('ru-RU');if(p<1)requestAnimationFrame(step)};requestAnimationFrame(step);cio.unobserve(el)})},{threshold:0.4});
   counters.forEach(c=>cio.observe(c));
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ЗАПУСК АНИМАЦИИ КАТАЛОГА ПО ПОЯВЛЕНИЮ ЗАГОЛОВКА
+   ═══════════════════════════════════════════════════════════════ */
+function initCatalogAnimation(){
+  var grids = document.querySelectorAll('.prods:not(.animate)');
+  if(!grids.length) return;
+
+  for(var i=0; i<grids.length; i++){
+    (function(grid){
+      var container = grid.closest('.container') || grid.parentElement;
+      var head = container ? container.querySelector('.sec__head') : null;
+      var target = head || grid;
+
+      var rect = target.getBoundingClientRect();
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+
+      if(rect.top < vh){
+        grid.classList.add('animate');
+        return;
+      }
+
+      var observer = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            grid.classList.add('animate');
+            observer.disconnect();
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -15% 0px'
+      });
+
+      observer.observe(target);
+    })(grids[i]);
+  }
 }
 
 function jimonInit(){
