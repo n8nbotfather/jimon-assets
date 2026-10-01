@@ -254,7 +254,7 @@ function initParallax(){
    ЗАПУСК АНИМАЦИИ КАТАЛОГА ПО ПОЯВЛЕНИЮ ЗАГОЛОВКА
    ═══════════════════════════════════════════════════════════════ */
 function initCatalogAnimation(){
-  var grids = document.querySelectorAll('.prods:not(.animate)');
+  var grids = document.querySelectorAll('.prods:not(.animate), .cats:not(.animate)');
   if(!grids.length) return;
 
   for(var i=0; i<grids.length; i++){
