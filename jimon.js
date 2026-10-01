@@ -218,6 +218,39 @@ function initCounters(){
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   ПАРАЛЛАКС ФОНОВ — только на десктопе
+   ═══════════════════════════════════════════════════════════════ */
+function initParallax(){
+  if(window.innerWidth < 961) return;
+
+  var sections = document.querySelectorAll('.sec--cats, .sec--hits');
+  if(!sections.length) return;
+
+  var ticking = false;
+
+  function updateParallax(){
+    var vh = window.innerHeight;
+    sections.forEach(function(sec){
+      var rect = sec.getBoundingClientRect();
+      if(rect.bottom < -200 || rect.top > vh + 200) return;
+      var offset = rect.top * 0.35;
+      sec.style.setProperty('--parallax-y', (-offset) + 'px');
+    });
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function(){
+    if(!ticking){
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', updateParallax);
+  updateParallax();
+}
+
+/* ═══════════════════════════════════════════════════════════════
    ЗАПУСК АНИМАЦИИ КАТАЛОГА ПО ПОЯВЛЕНИЮ ЗАГОЛОВКА
    ═══════════════════════════════════════════════════════════════ */
 function initCatalogAnimation(){
@@ -293,7 +326,7 @@ function jimonInit(){
   if(mclose)mclose.addEventListener('click',closeMobileMenu);
   document.querySelectorAll('#mmenu a').forEach(a=>a.addEventListener('click',closeMobileMenu));
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeOrderModal();closeMobileMenu()}});
-   initParallax(); 
+  initParallax(); 
   window.addEventListener('hashchange',router);
   router();
 }
