@@ -255,6 +255,28 @@ function initCatalogAnimation(){
   }
 }
 
+/* Параллакс для фонов секций — только на десктопе */
+function initParallax(){
+  if(window.innerWidth < 961) return;
+
+  var sections = document.querySelectorAll('.sec--cats, .sec--hits');
+  if(!sections.length) return;
+
+  function updateParallax(){
+    sections.forEach(function(sec){
+      var rect = sec.getBoundingClientRect();
+      var vh = window.innerHeight;
+      if(rect.bottom < 0 || rect.top > vh) return;
+      var offset = rect.top * 0.35;
+      sec.style.setProperty('--parallax-y', (-offset) + 'px');
+    });
+  }
+
+  window.addEventListener('scroll', updateParallax, { passive: true });
+  window.addEventListener('resize', updateParallax);
+  updateParallax();
+}
+
 function jimonInit(){
   const hdr=document.getElementById('hdr');
   const totop=document.getElementById('totop');
@@ -271,6 +293,7 @@ function jimonInit(){
   if(mclose)mclose.addEventListener('click',closeMobileMenu);
   document.querySelectorAll('#mmenu a').forEach(a=>a.addEventListener('click',closeMobileMenu));
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeOrderModal();closeMobileMenu()}});
+   initParallax(); 
   window.addEventListener('hashchange',router);
   router();
 }
