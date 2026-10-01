@@ -505,7 +505,7 @@ body.jimon-body-lock{overflow:hidden!important}
   inset:0;
   background-image:url('https://cdn.jsdelivr.net/gh/n8nbotfather/jimon-assets@main/images/bg-herbs-2.jpg');
   background-size:cover;
-  background-position:center center;
+  background-position:center calc(50% + var(--parallax-y, 0px));
   background-repeat:no-repeat;
   opacity:.35;
   pointer-events:none;
