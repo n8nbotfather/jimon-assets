@@ -490,3 +490,41 @@ body.jimon-body-lock{overflow:hidden!important}
 .prods.animate{
   /* Ничего не делаем — только маркер для JS */
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   ФОН ДЛЯ СЕКЦИИ «ДЕСЯТЬ НАПРАВЛЕНИЙ»
+   ═══════════════════════════════════════════════════════════════ */
+.sec--cats{
+  position:relative;
+  background:var(--cream);
+  overflow:hidden;
+}
+.sec--cats::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:url('https://cdn.jsdelivr.net/gh/n8nbotfather/jimon-assets@main/images/bg-herbs.jpg');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  opacity:.18;
+  pointer-events:none;
+  z-index:0;
+}
+.sec--cats::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    180deg,
+    rgba(253,249,238,.78) 0%,
+    rgba(253,249,238,.55) 50%,
+    rgba(253,249,238,.85) 100%
+  );
+  pointer-events:none;
+  z-index:1;
+}
+.sec--cats .container{
+  position:relative;
+  z-index:2;
+}
