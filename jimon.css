@@ -380,9 +380,9 @@ body.jimon-body-lock{overflow:hidden!important}
   inset:0;
   background:linear-gradient(
     180deg,
-    rgba(253,249,238,.78) 0%,
-    rgba(253,249,238,.55) 50%,
-    rgba(253,249,238,.85) 100%
+    rgba(253,249,238,.50) 0%,
+    rgba(253,249,238,.25) 50%,
+    rgba(253,249,238,.60) 100%
   );
   pointer-events:none;
   z-index:1;
