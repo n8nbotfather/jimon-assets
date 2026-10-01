@@ -368,13 +368,12 @@ body.jimon-body-lock{overflow:hidden!important}
   inset:0;
   background-image:url('https://cdn.jsdelivr.net/gh/n8nbotfather/jimon-assets@main/images/bg-herbs-2.jpg');
   background-size:cover;
-  background-position:center calc(50% + var(--parallax-y, 0px));
+  background-position:center center;
   background-repeat:no-repeat;
   opacity:.35;
   pointer-events:none;
   z-index:0;
-  will-change:background-position;
-}
+  }
 .sec--cats::after{
   content:'';
   position:absolute;
@@ -407,13 +406,12 @@ body.jimon-body-lock{overflow:hidden!important}
   inset:0;
   background-image:url('https://cdn.jsdelivr.net/gh/n8nbotfather/jimon-assets@main/images/bg-herbs-2.jpg');
   background-size:cover;
-  background-position:center calc(50% + var(--parallax-y, 0px));
+  background-position:center center; 
   background-repeat:no-repeat;
   opacity:.28;
   pointer-events:none;
   z-index:0;
-  will-change:background-position;
-}
+  }
 .sec--hits::after{
   content:'';
   position:absolute;
