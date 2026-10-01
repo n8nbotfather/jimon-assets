@@ -570,3 +570,33 @@ body.jimon-body-lock{overflow:hidden!important}
   transform:translateY(-3px) scale(1.05)!important;
   box-shadow:0 10px 25px rgba(240,180,41,.5)!important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   АНИМАЦИЯ КАТЕГОРИЙ «ДЕСЯТЬ НАПРАВЛЕНИЙ»
+   ═══════════════════════════════════════════════════════════════ */
+.cats .cat{
+  opacity:0;
+  transform:translateY(50px) scale(.9);
+  transition:transform .8s cubic-bezier(.25,.8,.25,1),
+             opacity .8s ease;
+}
+.cats.animate .cat{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+.cats.animate .cat:nth-child(1){transition-delay:.1s}
+.cats.animate .cat:nth-child(2){transition-delay:.2s}
+.cats.animate .cat:nth-child(3){transition-delay:.3s}
+.cats.animate .cat:nth-child(4){transition-delay:.4s}
+.cats.animate .cat:nth-child(5){transition-delay:.5s}
+.cats.animate .cat:nth-child(6){transition-delay:.6s}
+.cats.animate .cat:nth-child(7){transition-delay:.7s}
+.cats.animate .cat:nth-child(8){transition-delay:.8s}
+.cats.animate .cat:nth-child(9){transition-delay:.9s}
+.cats.animate .cat:nth-child(10){transition-delay:1s}
+
+.cats.animate .cat:hover{
+  transform:translateY(-6px) scale(1);
+  opacity:1;
+}
