@@ -326,7 +326,6 @@ function jimonInit(){
   if(mclose)mclose.addEventListener('click',closeMobileMenu);
   document.querySelectorAll('#mmenu a').forEach(a=>a.addEventListener('click',closeMobileMenu));
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeOrderModal();closeMobileMenu()}});
-  initParallax(); 
   window.addEventListener('hashchange',router);
   router();
 }
