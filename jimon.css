@@ -504,10 +504,10 @@ body.jimon-body-lock{overflow:hidden!important}
   position:absolute;
   inset:0;
   background-image:url('https://cdn.jsdelivr.net/gh/n8nbotfather/jimon-assets@main/images/bg-herbs.jpg');
-  background-size:cover;
-  background-position:center;
+  background-size:contain;
+  background-position:center center;
   background-repeat:no-repeat;
-  opacity:.40;
+  opacity:.35;
   pointer-events:none;
   z-index:0;
 }
